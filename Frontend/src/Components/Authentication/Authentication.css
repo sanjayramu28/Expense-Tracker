@@ -1,0 +1,32 @@
+.forms input{
+    padding: 10px;
+    width: 300px;
+    margin: 10px;
+    overflow: visible;
+}
+
+.label.animate{
+    /* display: flex ~; */
+    transition: 0.8s ;
+    position: relative;
+    top: 22px !important;
+    overflow: visible;
+    left:30px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.label{
+    /* display: none !important; */
+    padding: 1px;
+    position: relative;
+    top: 45px;
+    left:30px;
+    /* border: 1px solid black; */
+  
+
+    /* border: 0px 10px 0px 10px solid black; */
+    /* border: 0px 1px 0px 1px solid black; */
+    width: 23%;
+    background-color: white;
+}

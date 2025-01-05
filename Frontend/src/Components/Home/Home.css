@@ -1,0 +1,63 @@
+.blocks{
+    background-image: url("https://img.freepik.com/free-vector/watercolor-soft-earth-tones-background_23-2151166480.jpg?ga=GA1.1.1161449929.1704814302&semt=ais_hybrid");
+    background-size: cover;
+    font-family: "Roboto Mono", serif;
+    
+}
+.blocks label{
+    font-family: "Agu Display", serif;
+
+}
+
+
+.blocks:hover{
+    transform: scale(1.1);
+    box-shadow: 5px 5px 11px;
+    cursor: pointer;
+}
+
+.categoryicon{
+    /* display: flex; */
+    padding: 10px;
+    
+
+}
+
+.categoryicon p{
+    /* display: flex !important; */
+}
+
+.categoryicon svg{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: antiquewhite;
+}
+
+.bikeanimation {
+    overflow: hidden;
+    animation: bikeanime 5s linear forwards;
+    animation-iteration-count: infinite;
+    white-space: nowrap;
+    /* transition: 0.9s; */
+    z-index: 1;
+    /* display: flex !important; */
+    position: absolute;
+    top:17px;
+}
+
+.bikeanimation label{
+    /* display: inline-block; */
+}
+
+@keyframes bikeanime {
+    
+
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        /* transform: scale(1); */
+        transform: translateX(-100%);
+        /* right:100px; */
+    }
+}

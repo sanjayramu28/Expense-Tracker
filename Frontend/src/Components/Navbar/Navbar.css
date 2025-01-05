@@ -1,0 +1,130 @@
+.menu {
+  position: absolute;
+  /* top: -50px; */
+  /* heigh */
+  right: 80px;
+  color: white;
+  background-color: black;
+  /* background-image: url("https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg?ga=GA1.1.1161449929.1704814302&semt=ais_hybrid"); */
+  padding: 30px;
+  border-radius: 20px;
+  z-index: 12;
+  /* backdrop-filter: blur(15px); Blur effect */
+
+}
+.navbutton{
+overflow: hidden;
+}
+.navbutton button {
+
+  background: linear-gradient(90deg, #ff7f50, #ff6347);
+  border-radius: 10px;
+  color: white;
+
+  overflow: hidden;
+  border: 1px solid blue;
+  padding: 15px 20px;
+  color: black;
+  font-family: cursive;
+  font-style: italic;
+  font-weight: bold;
+  transition: all 3ms ease-in-out;
+}
+
+.bttn{
+  position: relative;
+  overflow: hidden;
+}
+
+
+.bttn::before{
+  content: " ";
+  position: absolute;
+  background-color: transparent;
+  left: -100%;
+  /* border-style: solid; */
+  /* border-color: black; */
+  border-top: 5px solid black;
+
+  display: flex;
+  transform: rotate(-45deg);
+  right: 90px;
+  
+  transition: 0.5s all ease-in;
+  /* top: 10vh; */
+  height: 55px !important;
+  color: black;
+}
+
+.bttn:hover::before{
+  right: -300%;
+}
+
+/* .navbutton::before {
+  content: "";
+  position: relative;
+  border: 2px solid black;
+  height: 10px;
+  top: -10px;
+  background-color: red;
+  transition: background-color 300ms ease-in;
+} */
+
+.navbutton:hover{
+  transform: scale(1.1);
+  /* box-shadow: 10px 10px 20px #ff7f50; */
+
+}
+
+/* <!-- HTML !-->
+<button class="button-51" role="button">Button 51</button> */
+
+/* CSS */
+.button-51 {
+  background-color: transparent;
+  border: 1px solid #266DB6;
+  box-sizing: border-box;
+  color: #00132C;
+  font-family: "Avenir Next LT W01 Bold", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  padding: 16px 23px;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-51:hover,
+.button-51:active {
+  outline: 0;
+}
+
+.button-51:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button-51:before {
+  background-color: #D5EDF6;
+  content: "";
+  height: calc(100% + 3px);
+  position: absolute;
+  right: -7px;
+  top: -9px;
+  transition: background-color 300ms ease-in;
+  width: 100%;
+  z-index: -1;
+}
+
+.button-51:hover:before {
+  background-color: #6DCFF6;
+}
+
+@media (min-width: 768px) {
+  .button-51 {
+    padding: 16px 32px;
+  }
+}

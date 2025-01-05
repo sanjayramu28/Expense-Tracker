@@ -1,0 +1,28 @@
+.addbg{
+    /* background-image: linear-gradient(to right, #fc5c7d, #6a82fb); */
+    background-image: url("https://img.freepik.com/free-vector/technology-background-concept_52683-35556.jpg?t=st=1735824549~exp=1735828149~hmac=976f2f9492a96c262e3314d8286529210ac6c3b39592e713458218479e4c9efd&w=996");
+    color: white;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.form-group{
+    font-size: 30px;
+    font-weight:bold;
+    /* display: flex; */
+    font-family: monospace;
+    justify-content: flex-end;
+}
+
+.forminput input,
+.forminput select{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.forminput input:focus,
+.forminput select:focus{
+    padding: 10px;
+    border: 4px solid black;
+}
