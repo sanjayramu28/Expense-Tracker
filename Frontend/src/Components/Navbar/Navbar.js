@@ -3,7 +3,9 @@ import { Link, useNavigate } from "react-router-dom"
 import './Navbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faUser, faX } from '@fortawesome/free-solid-svg-icons'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -18,10 +20,16 @@ const logout = () => {
 }
 
 
-// const 
+
 
 const Navbar = () => {
-    // getdetails();
+    // useEffect(()=>{
+    //     const token=localStorage.getItem("token");
+    //     if(!token){
+    //         window.location.href='/login';
+    //     }
+    
+    // },[])
 
     const [menuvisiblity, setmenuvisiblity] = useState(false);
     const toggleclass = () => {
@@ -32,11 +40,10 @@ const Navbar = () => {
     navigate = useNavigate()
     // console.log(res)
     return (
-
         <div className="container-fluid">
             <div className="row  bg-dark text-white p-2">
                 <div className="col-md-9 " style={{ display: "flex", justifyContent: "center" }}>
-                    <Link to='/' className="d-flex">
+                    <Link to='/' className="d-flex text-decoration-none">
                         <div className="text-white d-flex" style={{ alignSelf: 'center', fontSize: "30px" }}>
                             <p> Expense Tracker</p>
                         </div>
@@ -71,13 +78,12 @@ const Navbar = () => {
                 <div className="mt-3 text-dark" style={{ display: "flex", justifyContent: "space-between", width: "50%" }}>
                     <p className="navbutton">
                         <Link to="/Add" className="text-dark ">
-                             <button className="bttn " >
-                                {/* <p>gg</p> */}
+                            <button className="bttn">
                                 Add Expense
                             </button>
                         </Link>
                     </p>
-                    <p  className="navbutton">
+                    <p className="navbutton">
                         <Link to="/Remove-Expense" className="text-dark">
                             <button className="bttn btn">
                                 Remove Expense

@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBagShopping, faBasketShopping, faBowlFood, faEthernet, faHeartPulse, faHouseChimney, faIndianRupeeSign, faMotorcycle, faShirt } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from "react";
 import './Home.css'
+import Homeloader from "../../Assests/Loader.gif"
+
 
 const Home = () => {
     const d = new Date()
@@ -18,8 +20,11 @@ const Home = () => {
     const [expenses, Setexpense] = useState([]);
     const [thisMonthExpense, sethisMonthsExpense] = useState(0);
     const [PreviousMonthExpense, setPreviousMonthExpense] = useState(0);
-    const [viewheader, setviewheader] = useState(false);
+    const [viewloader, setviewloader] = useState(false);
     useEffect(() => {
+        setviewloader(true);
+
+
         const fetchExpenses = async () => {
             try {
                 const res = await axios.get("http://localhost:5000/", {
@@ -27,26 +32,28 @@ const Home = () => {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
                 });
-                const data = res.data;
-                // data.forEach(expense => {
-                //     console.log(`Original: ${expense.SpentOn}, Parsed: ${new Date(expense.SpentOn)}`);
-                // });
 
+                const data = res.data;
                 const sortedexpense = data.sort((a, b) => {
                     const dateA = new Date(a.SpentOn).getTime(); // Convert to timestamp
                     const dateB = new Date(b.SpentOn).getTime();
                     return dateB - dateA;
                 });
 
-
                 Setexpense(sortedexpense);
-                // console.log(sortedexpense); // Verify the sorted array
-
             }
             catch (err) {
-                console.log("error While Fetching", err);
+                if (err.status === 401){
+                    window.location.href = "/login"
+                    localStorage.removeItem("token")
+                    localStorage.removeItem("userEmail")
+                    localStorage.removeItem("userId")
+                }
             }
+            finally {
 
+                setviewloader(false);
+            }
 
         }
         fetchExpenses();
@@ -138,21 +145,16 @@ const Home = () => {
 
 
     const Header = ({ month, year }) => {
-        console.log("heaf")
         return (
             <>
-                {/* <p>jjj</p> */}
                 <p>{months[month] + " " + year}'s Spending:</p>
             </>
         )
     }
 
-    let view = false;
-    
-
-    // const somefun;
 
     return (
+
         <>
             <div className="container-fluid ">
                 <div className="row d-flex" style={{ fontFamily: "Agu Display,seriff", fontSize: "25px" }}>
@@ -162,52 +164,61 @@ const Home = () => {
                     <div className="card col d-flex p-2  text-dark" style={{ alignItems: 'center' }}>
                         <p>Previous Month Total Spending:{PreviousMonthExpense}</p>
                     </div>
-                    
-                </div>
-                <div className="ms-5 row text-white" >
-                    {
-                        expenses.map((expense, index) => (
-                            <div key={index} className="card col-md-2 p-3 m-3 blocks" style={{ color: 'black', overflow: 'hidden' }}>
-                                {(() => {
-                                    const date = new Date(expense.SpentOn);
-                                    const month = date.getMonth();
-                                    const year = new Date(expense.SpentOn).getFullYear();
-                                    if (month != prevmonth) {
-                                        prevmonth = month;
-                                        // setviewheader(!viewheader);
 
-                                        // header(month,year);
-                                        return  <Header month={month} year={year}/>
-                                        // somefun()
-                                        // return (
-                                        // <p>{months[month]+" "+year}'s Spending:</p>
-                                        // )
-                                    }
-                                }
-                                )()
-                                }
-                                {
-                                    categoryImage(expense.Category)
-                                }
-                                <p><span className="fw-bold">Category:</span>
-                                    <label>{expense.Category}</label>
-                                </p>
-                                <p>
-                                    <span className="fw-bold">Amount Spent:</span>
-                                    <label>
-                                        <FontAwesomeIcon icon={faIndianRupeeSign} />  {expense.amountSpent}
-                                    </label>
-                                </p>
-                                <p>
-                                    <span className="fw-bold">Spent On:</span>
-                                    <label>
-                                        {new Date(expense.SpentOn).toLocaleDateString()
-                                        }
-                                    </label>
-                                </p>
+                </div>
+                <div className="row text-white" style={{ position: "relative" }} >
+                    {
+                        viewloader == true && (
+                            <div className="Home-loader ">
+                                <div className="container">
+                                    <div className="dash uno"></div>
+                                    <div className="dash dos"></div>
+                                    <div className="dash tres"></div>
+                                    <div className="dash cuatro"></div>
+                                </div>
                             </div>
-                        ))
+                        )
                     }
+                    <div className=" row " style={{ display: "grid", gridTemplateColumns: "auto auto auto", gap: "10px 30px", overflow: "hidden" }} >
+                        {
+                            expenses.map((expense, index) => (
+                                <div key={index} className="card  p-3 m-3 blocks">
+                                    <div className="row">
+                                        {(() => {
+                                            const date = new Date(expense.SpentOn);
+                                            const month = date.getMonth();
+                                            const year = new Date(expense.SpentOn).getFullYear();
+                                            if (month != prevmonth) {
+                                                prevmonth = month;
+                                                return <Header month={month} year={year} />                                              
+                                            }
+                                        }
+                                        )()
+                                        }
+                                        {
+                                            categoryImage(expense.Category)
+                                        }
+                                        <p><span className="fw-bold">Category:</span>
+                                            <label>{expense.Category}</label>
+                                        </p>
+                                        <p>
+                                            <span className="fw-bold">Amount Spent:</span>
+                                            <label>
+                                                <FontAwesomeIcon icon={faIndianRupeeSign} />  {expense.amountSpent}
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <span className="fw-bold">Spent On:</span>
+                                            <label>
+                                                {new Date(expense.SpentOn).toLocaleDateString()
+                                                }
+                                            </label>
+                                        </p>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         </>

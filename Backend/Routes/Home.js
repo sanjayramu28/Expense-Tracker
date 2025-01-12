@@ -5,24 +5,19 @@ var jwt = require('jsonwebtoken');
 // var userid;
 
 const GetExpenses = async (req, res) => {
-    // console.log("id:", userid)
     try {
         const response = await Expense.find({ Userid: req.userid });
-        // console.log("r", response);
-        // console.log(req.userid)
         res.status(200).json(response);
     }
     catch (e) {
         console.log("Error")
     }
-    // console.log("expense");
 }
 
 
 const putdata = async (req, res) => {
     const { Userid,Category, amountSpent, date } = req.body;
     try {
-
         const data = new Expense({
             Userid,
             Category,
@@ -95,13 +90,18 @@ const register = async (req, res) => {
 
 const authMiddleware = (req, res, next) => {
     const token = req.headers.authorization?.split(" ")[1];
+    if(!token){
+        return res.redirect("/login");
+    }
+
     try {
         const decode = jwt.verify(token, process.env.JWT)
         req.userid = decode.id
+        
         next()
     }
     catch (e) {
-        return res.status(401).json({ message: "Invalid token" })
+        res.status(401).json({ message: "Invalid token" }) ;        
     }
 }
 
@@ -111,7 +111,6 @@ const login = async (req, res) => {
         const { userEmail, password } = req.body;
         const user = await User.findOne({ UserEmail: userEmail });
         const hashedpassword = bcrypt.compareSync(password, user.Password)
-        // console.log(user.Password + "  " + hashedpassword)
         if (!user) {
             res.status(404).json({
                 message: "User not Found"
@@ -120,15 +119,10 @@ const login = async (req, res) => {
         if (!hashedpassword) {
             return res.status(401).json({ message: "Invalid password" });
         }
-
         const token = jwt.sign({ id: user._id, email: user.UserEmail }, process.env.JWT, { expiresIn: '1h' })
         req.user = user;
-        req.token = token;
-        // console.log(token)
-
-        // userid = user._id;
+        req.token = token;        
         res.status(200).json({
-
             user: {
                 id: user._id,
                 email: user.UserEmail

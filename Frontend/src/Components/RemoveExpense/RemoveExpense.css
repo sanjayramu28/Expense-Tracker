@@ -1,50 +1,42 @@
-html,body{
+html,
+body {
     height: 100%;
 }
-body{
-    /* background-image: url("https://images.unsplash.com/photo-1500964757637-c85e8a162699?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fDQuJTIwTmF0dXJlJTIwSW5zcGlyZWR8ZW58MHx8MHx8fDA%3D"); */
+
+body {
     background-image: url("../../Assests/naturebg.jpg");
-    /* height: 100vh; */
     background-attachment: fixed;
-        background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
 .tiles {
-    /* --hdr-gradient: radial-gradient(farthest-corner circle at 100% 0% in oklab,
-            oklch(80% .4 222) -46% -46%, oklch(35% .5 313) 100%);
-    --sdr-gradient: radial-gradient(farthest-corner circle at 100% 0%,
-            #00dfff -46% -46%, #8c00ea 100%); */
-    background-image: url("https://i.pinimg.com/236x/eb/1e/21/eb1e21a9e04bfad41837ec34f9815833.jpg");
+    background-image: url("https://images.unsplash.com/photo-1489861518096-4d12b732e831?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTl8fGdyYWRpZW50JTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D");
     background-size: cover;
+    background-position: center;
     border-radius: 20px;
     background-repeat: no-repeat;
     font-family: "Quicksand", serif;
-    /* font-optical-sizing: auto; */
     font-weight: 600;
     font-style: normal;
 }
 
-.tiles:hover{
+
+.tiles:hover {
     color: red;
+    cursor: pointer;
     z-index: 1;
-    box-shadow: 1px -1px 9px 10px #ffe10f;
-    transform: scale(1.01);
+    box-shadow: 8px 12px #7ce6fd;
+    transform: scale(1.05);
 }
 
-.tiles label{
-    font-family: "Dancing Script", serif;
-    /* font-size: 20px; */
+.tiles label {
     color: white;
     font-weight: bolder;
 }
 
-.tiles span{
-    font-family: "Rubik Vinyl", serif;
+.tiles span {
     color: white;
-    /* background: linear-gradient(to right, #f32170, #ff6b08,#cf23cf, #eedd44); */
-    /* -webkit-text-fill-color: transparent; */
-    /* -webkit-background-clip: text; */
 }
 
 .delete-icon {
@@ -68,4 +60,23 @@ body{
 .button {
     background-color: transparent;
     border: 0px;
+    width: 100px;
+}
+
+
+.animate{
+    animation: fadeout 0.5s ease forwards;
+}
+
+@keyframes fadeout{
+    from{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+    to{
+        opacity: 0;
+        display: none;
+        transform: translateX(100%);
+    }
 }

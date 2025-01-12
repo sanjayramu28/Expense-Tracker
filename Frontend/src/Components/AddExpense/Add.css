@@ -1,6 +1,6 @@
 .addbg{
     /* background-image: linear-gradient(to right, #fc5c7d, #6a82fb); */
-    background-image: url("https://img.freepik.com/free-vector/technology-background-concept_52683-35556.jpg?t=st=1735824549~exp=1735828149~hmac=976f2f9492a96c262e3314d8286529210ac6c3b39592e713458218479e4c9efd&w=996");
+    background-image: url("https://img.freepik.com/premium-vector/abstract-polygonal-pattern-luxury-golden-line-with-dark-blue_41981-1216.jpg?w=900");
     color: white;
     background-size: cover;
     border-radius: 10px;
@@ -12,6 +12,22 @@
     /* display: flex; */
     font-family: monospace;
     justify-content: flex-end;
+}
+
+
+.add svg{
+    /* background-color: black; */
+    border-radius: 90px;
+    position: absolute;
+    top: 50%;
+    left: 44%;
+    width: 200px !important;
+    height: 200px !important;
+    display: flex;
+    /* justify-content: center; */
+    /* justify-items: center; */
+    /* align-items: center; */
+
 }
 
 .forminput input,

@@ -1,32 +1,117 @@
-.forms input{
+html,body{
+      height: 100%;
+      margin: 0;
+      padding: 0;
+}
+
+.forms input {
     padding: 10px;
     width: 300px;
     margin: 10px;
-    overflow: visible;
-}
-
-.label.animate{
-    /* display: flex ~; */
-    transition: 0.8s ;
-    position: relative;
-    top: 22px !important;
-    overflow: visible;
-    left:30px;
-    border-right: 1px solid black;
-    border-left: 1px solid black;
-}
-
-.label{
-    /* display: none !important; */
-    padding: 1px;
-    position: relative;
-    top: 45px;
-    left:30px;
-    /* border: 1px solid black; */
-  
-
-    /* border: 0px 10px 0px 10px solid black; */
-    /* border: 0px 1px 0px 1px solid black; */
-    width: 23%;
+    outline: none;
+    border: 0px;
+    border-bottom: 2px solid black;
     background-color: white;
+
 }
+
+/* .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 9999;
+    opacity: 0.3;
+} */
+
+.ani {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: black;
+}
+
+.form-input:focus {
+    background-color: #f0f8ff;
+}
+
+.form-input:focus+.ani,
+.form-input:not(:placeholder-shown)+.ani {
+    color: blue;
+    position: absolute;
+    top: 0px;
+}
+
+/* HTML: <div class="loader"></div> */
+
+.loader-parent{
+      position: fixed;
+      opacity: 0.5;
+      z-index: 99;
+      width: 100vw;
+      height: 100vh;
+      background-color: white;
+}
+.loader {
+    --w:10ch;
+    position: absolute;
+    top: 50%;
+    background-color: white;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    line-height: 1.4em;
+    letter-spacing: var(--w);
+    width: var(--w);
+    overflow: hidden;
+    white-space: nowrap;
+    color: #0000;
+    text-shadow: 
+          calc( 0*var(--w)) 0 #000,calc(-1*var(--w)) 0 #000,calc(-2*var(--w)) 0 #000,calc(-3*var(--w)) 0 #000,calc(-4*var(--w)) 0 #000, 
+          calc(-5*var(--w)) 0 #000,calc(-6*var(--w)) 0 #000,calc(-7*var(--w)) 0 #000,calc(-8*var(--w)) 0 #000,calc(-9*var(--w)) 0 #000;
+    animation: l20 2s infinite linear;
+  }
+  .loader:before {
+    content:"Loading...";
+    opacity: 1;
+    z-index: 100;
+  }
+  
+  @keyframes l20 {
+    9.09% {text-shadow: 
+          calc( 0*var(--w)) -10px #000,calc(-1*var(--w)) 0 #000,calc(-2*var(--w)) 0 #000,calc(-3*var(--w)) 0 #000,calc(-4*var(--w)) 0 #000, 
+          calc(-5*var(--w)) 0 #000,calc(-6*var(--w)) 0 #000,calc(-7*var(--w)) 0 #000,calc(-8*var(--w)) 0 #000,calc(-9*var(--w)) 0 #000}
+    18.18% {text-shadow: 
+          calc( 0*var(--w)) 0 #000,calc(-1*var(--w)) -10px #000,calc(-2*var(--w)) 0 #000,calc(-3*var(--w)) 0 #000,calc(-4*var(--w)) 0 #000, 
+          calc(-5*var(--w)) 0 #000,calc(-6*var(--w)) 0 #000,calc(-7*var(--w)) 0 #000,calc(-8*var(--w)) 0 #000,calc(-9*var(--w)) 0 #000}
+    27.27% {text-shadow: 
+          calc( 0*var(--w)) 0 #000,calc(-1*var(--w)) 0 #000,calc(-2*var(--w)) -10px #000,calc(-3*var(--w)) 0 #000,calc(-4*var(--w)) 0 #000, 
+          calc(-5*var(--w)) 0 #000,calc(-6*var(--w)) 0 #000,calc(-7*var(--w)) 0 #000,calc(-8*var(--w)) 0 #000,calc(-9*var(--w)) 0 #000}
+    36.36% {text-shadow: 
+          calc( 0*var(--w)) 0 #000,calc(-1*var(--w)) 0 #000,calc(-2*var(--w)) 0 #000,calc(-3*var(--w)) -10px #000,calc(-4*var(--w)) 0 #000, 
+          calc(-5*var(--w)) 0 #000,calc(-6*var(--w)) 0 #000,calc(-7*var(--w)) 0 #000,calc(-8*var(--w)) 0 #000,calc(-9*var(--w)) 0 #000}
+    45.45% {text-shadow: 
+          calc( 0*var(--w)) 0 #000,calc(-1*var(--w)) 0 #000,calc(-2*var(--w)) 0 #000,calc(-3*var(--w)) 0 #000,calc(-4*var(--w)) -10px #000, 
+          calc(-5*var(--w)) 0 #000,calc(-6*var(--w)) 0 #000,calc(-7*var(--w)) 0 #000,calc(-8*var(--w)) 0 #000,calc(-9*var(--w)) 0 #000}
+    54.54% {text-shadow: 
+          calc( 0*var(--w)) 0 #000,calc(-1*var(--w)) 0 #000,calc(-2*var(--w)) 0 #000,calc(-3*var(--w)) 0 #000,calc(-4*var(--w)) 0 #000, 
+          calc(-5*var(--w)) -10px #000,calc(-6*var(--w)) 0 #000,calc(-7*var(--w)) 0 #000,calc(-8*var(--w)) 0 #000,calc(-9*var(--w)) 0 #000}
+    63.63% {text-shadow: 
+          calc( 0*var(--w)) 0 #000,calc(-1*var(--w)) 0 #000,calc(-2*var(--w)) 0 #000,calc(-3*var(--w)) 0 #000,calc(-4*var(--w)) 0 #000, 
+          calc(-5*var(--w)) 0 #000,calc(-6*var(--w)) -10px #000,calc(-7*var(--w)) 0 #000,calc(-8*var(--w)) 0 #000,calc(-9*var(--w)) 0 #000}
+    72.72% {text-shadow: 
+          calc( 0*var(--w)) 0 #000,calc(-1*var(--w)) 0 #000,calc(-2*var(--w)) 0 #000,calc(-3*var(--w)) 0 #000,calc(-4*var(--w)) 0 #000, 
+          calc(-5*var(--w)) 0 #000,calc(-6*var(--w)) 0 #000,calc(-7*var(--w)) -10px #000,calc(-8*var(--w)) 0 #000,calc(-9*var(--w)) 0 #000}
+    81.81% {text-shadow: 
+          calc( 0*var(--w)) 0 #000,calc(-1*var(--w)) 0 #000,calc(-2*var(--w)) 0 #000,calc(-3*var(--w)) 0 #000,calc(-4*var(--w)) 0 #000, 
+          calc(-5*var(--w)) 0 #000,calc(-6*var(--w)) 0 #000,calc(-7*var(--w)) 0 #000,calc(-8*var(--w)) -10px #000,calc(-9*var(--w)) 0 #000}
+    90.90% {text-shadow: 
+          calc( 0*var(--w)) 0 #000,calc(-1*var(--w)) 0 #000,calc(-2*var(--w)) 0 #000,calc(-3*var(--w)) 0 #000,calc(-4*var(--w)) 0 #000, 
+          calc(-5*var(--w)) 0 #000,calc(-6*var(--w)) 0 #000,calc(-7*var(--w)) 0 #000,calc(-8*var(--w)) 0 #000,calc(-9*var(--w)) -10px #000}
+  }

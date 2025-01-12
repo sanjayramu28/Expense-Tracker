@@ -2,7 +2,8 @@ import { useState } from "react"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import './Add.css'
-
+import AddLoader from "../../Assests/Addanimation.json"
+import Lottie from 'lottie-react';
 
 
 
@@ -10,12 +11,13 @@ const AddExpense = () => {
     const [Category, SetCategory] = useState("Food");
     const [amountSpent, SetamountSpent] = useState("1");
     const [Spenton, SetSpenton] = useState("");
+    const [loader, setloader] = useState(false);
     const notify = () => { toast("Added!") };
     const token = localStorage.getItem("token");
     const Userid = localStorage.getItem("userId")
 
-    const HandleSubmit = async () => {
-        console.log("USeR", Userid)
+    const HandleSubmit = async (e) => {
+        e.preventDefault();
         try {
             console.log(Spenton)
             const date = new Date(Spenton);
@@ -25,19 +27,40 @@ const AddExpense = () => {
                     Authorization: `Bearer ${token}`, // Include token
                 }
             })
-            console.log(res)
-            notify();
+            setloader(true);
         }
         catch (err) {
             console.log("error while add");
+            if (err.status === 401)
+                    window.location.href = "/login"
+            setloader(false);
         }
-        window.alert("GG")
+        finally {
+            setTimeout(()=>{
+                notify();
+                setloader(false);
+                window.location.reload()
+            },1200)
+        }
     }
 
     return (
 
         <>
             <ToastContainer />
+            {
+                loader == true &&
+                (
+                <div className=" row" >
+                    <div className=" add col-md-12">
+
+                    {/* <p>HI</p> */}
+                    <Lottie animationData={AddLoader} loop={false}/>
+                    {/* <p>Added Succesfully</p> */}
+                    </div>
+                </div>
+                )
+            }
             <div className="container-fluid mt-5 p-5 bg-warning w-75 addbg">
                 <div >
                     <h1>Add Expenses Here</h1>
