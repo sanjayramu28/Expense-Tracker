@@ -1,18 +1,28 @@
 const express = require('express');
-const db = require('./DatabaseConnection')
+const db = require('./DatabaseConnection');
 const cors = require("cors");
-const router = require('./Routes/Routes')
-const apiurl=process.env.FRONTEND_URL||process.env.PORT
+const router = require('./Routes/Routes');
 
+// Use process.env.PORT to bind the backend to the appropriate port
+const PORT = process.env.PORT || 5000;  // Default to 5000 for local development
+
+// If you have the frontend URL for CORS purposes, you can use it here
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';  // Default to localhost for development
 
 const app = express();
-app.use(cors())
+
+// Enable CORS with the frontend URL
+app.use(cors({
+    origin: FRONTEND_URL,  // Allow only frontend URL to make requests to the backend
+}));
+
+// Middleware
 app.use(express.json());
 
-app.use('', router)
+// API Routes
+app.use('', router);
 
-app.listen(apiurl, () => {
-    console.log(`Server listening ${apiurl}`)
-})
-
-
+// Start the server, binding to the correct port
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
