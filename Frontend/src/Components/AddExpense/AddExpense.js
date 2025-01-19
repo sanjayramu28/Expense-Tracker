@@ -4,8 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import './Add.css'
 import AddLoader from "../../Assests/Addanimation.json"
 import Lottie from 'lottie-react';
-import Icon from '@mdi/react';
-import { mdiFoodOutline } from '@mdi/js';
+const apiUrl = process.env.BACKEND_URL || 'http://localhost:5000'; // Default to localhost if not set
 
 
 
@@ -28,7 +27,7 @@ const AddExpense = () => {
             console.log(Spenton)
             const date = new Date(Spenton);
             const values = { Userid, Category, amountSpent, date };
-            const res = await axios.post("http://localhost:5000/Add", values, {
+            const res = await axios.post(`${apiUrl}/Add`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
