@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBagShopping, faBasketShopping, faBowlFood, faEthernet, faHeartPulse, faHouseChimney, faIndianRupeeSign, faMotorcycle, faShirt } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from "react";
 import './Home.css'
-import Homeloader from "../../Assests/Loader.gif"
 
 
+const apiUrl = process.env.BACKEND_URL || 'http://localhost:5000'; 
 const Home = () => {
     const d = new Date()
     const currentmonth = d.getMonth() + 1
@@ -26,7 +26,7 @@ const Home = () => {
 
         const fetchExpenses = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/", {
+                const res = await axios.get(`${apiUrl}/`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },

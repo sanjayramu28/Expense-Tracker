@@ -2,6 +2,7 @@ import axios from 'axios';
 import './Authentication.css'
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+const apiUrl = process.env.BACKEND_URL || 'http://localhost:5000'; 
 
 
 const Auth = () => {
@@ -15,7 +16,7 @@ const Auth = () => {
         try {
             setloggedin(false)
             e.preventDefault();
-            const post = await axios.post("http://localhost:5000/login", {
+            const post = await axios.post(`${apiUrl}/login`, {
                 userEmail,
                 password
             })

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Authentication.css'
+const apiUrl = process.env.BACKEND_URL || 'http://localhost:5000'; 
 
 
 const Register = () => {
@@ -15,7 +16,7 @@ const Register = () => {
     const register = async (e) => {
         try {
             e.preventDefault();
-            const post = await axios.post("http://localhost:5000/Register", {
+            const post = await axios.post(`${apiUrl}/Register`, {
                 UserName,
                 UserEmail,
                 Password

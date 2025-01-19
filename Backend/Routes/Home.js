@@ -17,6 +17,7 @@ const GetExpenses = async (req, res) => {
 
 const putdata = async (req, res) => {
     const { Userid,Category, amountSpent, date } = req.body;
+    console.log(req.body)
     try {
         const data = new Expense({
             Userid,
