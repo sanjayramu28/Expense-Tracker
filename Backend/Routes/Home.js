@@ -54,10 +54,10 @@ const DeleteData = async (req, res) => {
 
 const register = async (req, res) => {
     try {
-        const { UserEmail, Password } = req.body;
+        const { UserName,UserEmail, Password } = req.body;
         const hashedpassword = bcrypt.hashSync(Password, 10);
 
-        if (!UserEmail || !Password) {
+        if (!UserEmail || !Password||!UserName) {
             return res.status(400).json({
                 message: "Email and Password are required"
             });
@@ -70,6 +70,7 @@ const register = async (req, res) => {
             });
         }
         const result = new User({
+            UserName,
             UserEmail,
             Password: hashedpassword
         }
@@ -121,11 +122,13 @@ const login = async (req, res) => {
         }
         const token = jwt.sign({ id: user._id, email: user.UserEmail }, process.env.JWT, { expiresIn: '1h' })
         req.user = user;
+        console.log(user.UserName);
         req.token = token;        
         res.status(200).json({
             user: {
                 id: user._id,
-                email: user.UserEmail
+                email: user.UserEmail,
+                name:user.UserName
             },
             token: token,
             message: "loggged in"

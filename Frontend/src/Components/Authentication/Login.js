@@ -1,36 +1,8 @@
 import axios from 'axios';
 import './Authentication.css'
 import { useState } from 'react';
-import { Bars } from 'react-loading-icons'
-
 import { Link, useNavigate } from 'react-router-dom';
-import TailSpin from 'react-loading-icons/dist/esm/components/tail-spin';
-// import User from 'backend'
 
-
-
-
-// const toggleclass = (e) => {
-//     const input = e.target;
-//     const label = document.querySelector(`label[for="${input.id}"]`);
-//     if (label) {
-//         if (input.value.trim() === "") {
-//             label.classList.add('animate');
-//         } else {
-//             label.classList.remove('animate');
-//         }
-//     }
-// };
-
-// const resetClass = (e) => {
-//     // console.log(User)
-//     const input = e.target;
-//     const label = document.querySelector(`label[for="${input.id}"]`);
-
-//     if (label && input.value.trim() === "") {
-//         label.classList.remove('animate');
-//     }
-// };
 
 const Auth = () => {
     const navigate = useNavigate();
@@ -49,28 +21,35 @@ const Auth = () => {
             })
             if (post) {
                 navigate('/');
-                console.log("logg")
                 setloggedin(true);
-                localStorage.setItem("userEmail", userEmail)
             }
+            localStorage.setItem("userEmail", userEmail)
             const { user, token } = post.data;
             localStorage.setItem("token", token)
+            localStorage.setItem("userName", user.name)
             localStorage.setItem("userId", user.id)
-            console.log(user)
         }
         catch (err) {
-            window.alert("Invalid UserEmail or Password")
-
-            console.log(err)
+            if (err.message == "Network Error") {
+                alert("Network Error")
+            }
+            else if (err.message == "Request failed with status code 401") {
+                window.alert("Invalid UserEmail or Password")
+            }
+            else {
+                alert(err.message)
+            }
+        }
+        finally {
+            setloggedin(true);
         }
     }
     return (
-
-        < div className='w-100' style={{ display: "flex", justifyContent: "center", alignContent: "center",position:"fixed" }}>
-            {loggedin==false && (
-                <div className="w-100  loader-parent d-flex" style={{position:"absolute",justifyContent:"center"}}>
+        < div className='w-100' style={{ display: "flex", justifyContent: "center", alignContent: "center", position: "fixed" }}>
+            {loggedin == false && (
+                <div className="w-100  loader-parent d-flex" style={{ position: "absolute", justifyContent: "center" }}>
                     <div className='loader'>
-                    </div>                   
+                    </div>
                 </div>
             )}
             <div className="card d-flex mt-5" style={{ justifySelf: 'center' }}>

@@ -8,7 +8,6 @@ import Homeloader from "../../Assests/Loader.gif"
 
 const Home = () => {
     const d = new Date()
-    // console.log(month)    
     const currentmonth = d.getMonth() + 1
     let Previousmonth = d.getMonth()
     if (Previousmonth == 0) {
@@ -43,7 +42,7 @@ const Home = () => {
                 Setexpense(sortedexpense);
             }
             catch (err) {
-                if (err.status === 401){
+                if (err.status === 401) {
                     window.location.href = "/login"
                     localStorage.removeItem("token")
                     localStorage.removeItem("userEmail")
@@ -179,7 +178,7 @@ const Home = () => {
                             </div>
                         )
                     }
-                    <div className=" row " style={{ display: "grid", gridTemplateColumns: "auto auto auto", gap: "10px 30px", overflow: "hidden" }} >
+                    <div className=" row " style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "10px 30px", overflow: "hidden" }} >
                         {
                             expenses.map((expense, index) => (
                                 <div key={index} className="card  p-3 m-3 blocks">
@@ -190,7 +189,7 @@ const Home = () => {
                                             const year = new Date(expense.SpentOn).getFullYear();
                                             if (month != prevmonth) {
                                                 prevmonth = month;
-                                                return <Header month={month} year={year} />                                              
+                                                return <Header month={month} year={year} />
                                             }
                                         }
                                         )()

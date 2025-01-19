@@ -1,32 +1,11 @@
 import { useEffect, useState } from "react";
 import './RemoveExpense.css'
 import Detete_Animation from "../../Assests/Delete_Animation.mp4"
-import Models from 'backend/Models';
-import Lottie from 'lottie-react';
-import RemoveAnimation from "../../Assests/RemoveAnimation.json"
 import { Slide, toast, ToastContainer } from "react-toastify";
 const RemoveExpense = () => {
-
-
-    // const playvideo = (index) => {
-
-
-    // }
-    // const toggleclass = (index) => {
-    //     const ele = document.getElementById(index)
-    //     console.log(ele)
-    //     ele.classList.toggle('animate')
-    //     fetchExpenses()
-    // }
-
-    // const resetvideo = (index) => {
-    //     const video = document.getElementById(`delete-${index}`);
-    //     if (video)
-    //         toggleclass(index)
-    // }
     const token = localStorage.getItem("token")
 
-    const [expenses, Setexpense] = useState([ ]);
+    const [expenses, Setexpense] = useState([]);
     const [loader, setloader] = useState(false)
 
     const fetchExpenses = async () => {
@@ -37,28 +16,31 @@ const RemoveExpense = () => {
                 }
             });
             const data = await res.json();
-            if(Array.isArray(data)){
-                Setexpense(data);
+            if (Array.isArray(data)) {
+                const sortedexpense = data.sort((a, b) => {
+                    const dateA = new Date(a.SpentOn).getTime()
+                    const dateB = new Date(b.SpentOn).getTime()
+                    return dateB - dateA
+                });
+
+                Setexpense(sortedexpense);
             }
-            else if (data.message=='Invalid token'){
+            else if (data.message == 'Invalid token') {
                 window.location.href = "/login"
                 localStorage.removeItem("token")
                 localStorage.removeItem("userEmail")
                 localStorage.removeItem("userId")
             }
-            console.log(data)
         }
         catch (err) {
-            if (err.status === 401){
-                
-            }
+            alert("Error While Fetching");
         }
 
     }
     const showtoast = () => {
         toast('Deleted🗑️!', {
             position: "top-center",
-            autoClose: 2000,
+            autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: true,
@@ -83,11 +65,10 @@ const RemoveExpense = () => {
             });
             if (response.ok) {
                 const video = document.getElementById(`delete-${index}`);
-                console.log(video)
                 video.play();
-                showtoast()
                 video.onended = () => {
                     video.currentTime = 0;
+                    showtoast()
                     fetchExpenses()
                 }
             }
@@ -113,7 +94,7 @@ const RemoveExpense = () => {
                 theme="dark"
                 transition={Slide}
             />
-            <div className=" mt-5"
+            <div className=" mt-5 "
                 style={{ display: "grid", gridTemplateColumns: "auto  auto auto", gap: "20px 50px" }}>
                 {
                     expenses.map((expense, index) => {
@@ -127,7 +108,7 @@ const RemoveExpense = () => {
                                             <label>{expense.Category}</label>
                                         </p>
                                         <p>
-                                            <span>Amount Spent : </span>
+                                            <span>Amount Spent : Rs : </span>
                                             <label>{expense.amountSpent}</label>
                                         </p>
                                         <p>

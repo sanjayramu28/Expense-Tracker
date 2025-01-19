@@ -5,13 +5,37 @@
   right: 80px;
   color: white;
   background-color: black;
-  /* background-image: url("https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg?ga=GA1.1.1161449929.1704814302&semt=ais_hybrid"); */
   padding: 30px;
   border-radius: 20px;
   z-index: 12;
-  /* backdrop-filter: blur(15px); Blur effect */
-
 }
+
+.user-profile{
+  justify-content: center;
+  position: absolute;
+  /* top: 50%; */
+  right: 5%;
+  z-index: 99;
+  /* padding: 10px; */
+  font-family: "Ubuntu", serif;
+  font-size: 20px;
+  animation: fadein 0.3s;
+}
+
+@keyframes fadein{
+  0%{
+    opacity: 0;
+    transform: translatey(0px);
+  }
+  50%{
+    transform: translatey(30px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
 .navbutton{
 overflow: hidden;
 }
@@ -20,7 +44,6 @@ overflow: hidden;
   background: linear-gradient(90deg, #ff7f50, #ff6347);
   border-radius: 10px;
   color: white;
-
   overflow: hidden;
   border: 1px solid blue;
   padding: 15px 20px;
@@ -51,7 +74,6 @@ overflow: hidden;
   right: 90px;
   
   transition: 0.5s all ease-in;
-  /* top: 10vh; */
   height: 55px !important;
   color: black;
 }

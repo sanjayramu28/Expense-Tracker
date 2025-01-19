@@ -26,6 +26,10 @@ const Expenses = new Schema({
 });
 
 const UserCred = new Schema({
+    UserName:{
+        type:String,
+        require:true
+    },
     UserEmail: {
         type: String,
         required: true,

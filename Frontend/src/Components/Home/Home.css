@@ -5,10 +5,7 @@ html,body{
 
 .blocks{
     background-image: url("https://img.freepik.com/free-vector/watercolor-soft-earth-tones-background_23-2151166480.jpg?ga=GA1.1.1161449929.1704814302&semt=ais_hybrid");
-    background-size: cover;
-    /* display: grid;
-    justify-content: center;
-    gap: 20px 50px; */
+    background-size: cover;   
     font-family: "Roboto Mono", serif;
     
 }
@@ -34,15 +31,10 @@ html,body{
 .container {
     position: fixed;
     top: 50%;
-    left: 40%;
-    /* display: grid; */
-    /* place-items: center;
-    height: 100%; */
+    left: 40%;  
     z-index: 9;
     width: 100%;
-    /* transform: translate(-50%, -50%); */
     display: flex;
-    /* justify-content: center; */
   }
   
   .dash {

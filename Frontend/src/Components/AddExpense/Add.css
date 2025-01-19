@@ -1,7 +1,9 @@
 .addbg{
     /* background-image: linear-gradient(to right, #fc5c7d, #6a82fb); */
-    background-image: url("https://img.freepik.com/premium-vector/abstract-polygonal-pattern-luxury-golden-line-with-dark-blue_41981-1216.jpg?w=900");
+    /* background-image: url("https://img.freepik.com/premium-vector/abstract-polygonal-pattern-luxury-golden-line-with-dark-blue_41981-1216.jpg?w=900"); */
     color: white;
+    backdrop-filter: blur(5px);
+    border: 3px solid white;
     background-size: cover;
     border-radius: 10px;
 }
@@ -16,7 +18,6 @@
 
 
 .add svg{
-    /* background-color: black; */
     border-radius: 90px;
     position: absolute;
     top: 50%;
@@ -24,17 +25,18 @@
     width: 200px !important;
     height: 200px !important;
     display: flex;
-    /* justify-content: center; */
-    /* justify-items: center; */
-    /* align-items: center; */
 
 }
 
 .forminput input,
 .forminput select{
-    padding: 10px;
+    /* padding: 10px; */
     margin: 10px;
-    border-radius: 8px;
+    border: 4px solid transparent;
+    /* border-image: linear-gradient(to right, green, lightgreen);  */
+    border-image: url("https://img.freepik.com/free-vector/dark-wavy-colors-background_23-2148403785.jpg?ga=GA1.1.1161449929.1704814302&semt=ais_hybrid");
+    border-image-slice: 1; 
+    border-radius: 10px;
 }
 
 .forminput input:focus,
