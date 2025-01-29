@@ -4,11 +4,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import './Add.css'
 import AddLoader from "../../Assests/Addanimation.json"
 import Lottie from 'lottie-react';
-// const apiUrl = 'http://localhost:5000'; // Default to localhost if not set
-
+const apiUrl ='http://localhost:5000'; // Default to localhost if not set
+const Backend_url_Production=process.env.REACT_APP_BACKEND_URL|| "http://localhost:5000";
 
 
 const AddExpense = () => {
+    console.log("A",apiUrl)
     const [Category, SetCategory] = useState("Food🍱");
     const [amountSpent, SetamountSpent] = useState("");
     const [Spenton, SetSpenton] = useState("");
@@ -27,7 +28,7 @@ const AddExpense = () => {
             console.log(Spenton)
             const date = new Date(Spenton);
             const values = { Userid, Category, amountSpent, date };
-            const res = await axios.post("http://localhost:500/Add", values, {
+            const res = await axios.post(`${Backend_url_Production}/Add`, values, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }

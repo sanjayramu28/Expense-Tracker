@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import './RemoveExpense.css'
 import Detete_Animation from "../../Assests/Delete_Animation.mp4"
 import { Slide, toast, ToastContainer } from "react-toastify";
+const apiUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
 const RemoveExpense = () => {
     const token = localStorage.getItem("token")
 
@@ -10,7 +12,8 @@ const RemoveExpense = () => {
 
     const fetchExpenses = async () => {
         try {
-            const res = await fetch("http://localhost:5000/", {
+            setloader(true);
+            const res = await fetch(`${apiUrl}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
@@ -31,9 +34,11 @@ const RemoveExpense = () => {
                 localStorage.removeItem("userEmail")
                 localStorage.removeItem("userId")
             }
+            setloader(false)
         }
         catch (err) {
             alert("Error While Fetching");
+            setloader(false)
         }
 
     }
@@ -57,7 +62,7 @@ const RemoveExpense = () => {
     const dele = async (_id, index) => {
         try {
             setloader(true);
-            const response = await fetch(`http://localhost:5000/Remove-Expense/${_id}`, {
+            const response = await fetch(`${apiUrl}/Remove-Expense/${_id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -80,7 +85,8 @@ const RemoveExpense = () => {
 
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" >
+
             <ToastContainer
                 position="top-center"
                 autoClose={4000}
@@ -94,8 +100,15 @@ const RemoveExpense = () => {
                 theme="dark"
                 transition={Slide}
             />
+            {
+                loader  && (
+                    <div className="container-fluid" style={{ position: "relative", height: "60vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <div class="spinner"></div>
+                    </div>
+                )
+            }
             <div className=" mt-5 "
-                style={{ display: "grid", gridTemplateColumns: "auto  auto auto", gap: "20px 50px" }}>
+                style={{ display: "grid", gridTemplateColumns: "auto  auto auto", gap: "20px 50px", position: "relative" }}>
                 {
                     expenses.map((expense, index) => {
                         return (

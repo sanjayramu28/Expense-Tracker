@@ -10,7 +10,13 @@ const app = express();
 
 
 const FRONTEND_URL = 'http://localhost:3000';
-app.use(cors({ origin: FRONTEND_URL })); 
+const FRONTEND_URL_PRODUCTION = process.env.FRONTEND_URL_PRODUCTION;
+app.use(cors({
+    origin: [FRONTEND_URL, FRONTEND_URL_PRODUCTION],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],  // Allow the Authorization header
+    credentials: true,  // If you're using cookies or authentication
+}));
 
 app.use(express.json());
 

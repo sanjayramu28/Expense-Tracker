@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import './Home.css'
 
 
-const apiUrl = process.env.BACKEND_URL || 'http://localhost:5000'; 
+const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'; 
 const Home = () => {
     const d = new Date()
     const currentmonth = d.getMonth() + 1

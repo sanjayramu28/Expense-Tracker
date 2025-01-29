@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Authentication.css'
-const apiUrl = process.env.BACKEND_URL || 'http://localhost:5000'; 
+const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'; 
 
 
 const Register = () => {
