@@ -30,11 +30,11 @@ const Appf = () => {
       <Navbar />
       }
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Add" element={<AddExpense />} />
-        <Route path="/Remove-Expense" element={<RemoveExpense />} />
-        <Route path="/login" element={<Auth />} />
-        <Route path="/Register" element={<Register />} />
+        <Route path="#/" element={<Home />} />
+        <Route path="#/Add" element={<AddExpense />} />
+        <Route path="#/Remove-Expense" element={<RemoveExpense />} />
+        <Route path="#/login" element={<Auth />} />
+        <Route path="#/Register" element={<Register />} />
       </Routes>
     {/* </BrowserRouter> */}
   </>
