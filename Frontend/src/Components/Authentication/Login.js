@@ -2,7 +2,7 @@ import axios from 'axios';
 import './Authentication.css'
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-const apiUrl = process.env.BACKEND_URL || 'http://localhost:5000'; 
+const apiUrl = 'http://localhost:5000'; 
 
 
 const Auth = () => {
@@ -46,7 +46,7 @@ const Auth = () => {
         }
     }
     return (
-        < div className='w-100' style={{ display: "flex", justifyContent: "center", alignContent: "center", position: "fixed" }}>
+        < div className='w-100 ' style={{ display: "flex", justifyContent: "center", alignContent: "center", position: "fixed",fontFamily:"Titillium Web,serif" }}>
             {loggedin == false && (
                 <div className="w-100  loader-parent d-flex" style={{ position: "absolute", justifyContent: "center" }}>
                     <div className='loader'>
@@ -59,7 +59,7 @@ const Auth = () => {
                         <div className="d-flex mt-5 ms-4" style={{ justifyContent: "flex-start", alignContent: "center" }}>
                             <img src="https://img.freepik.com/free-vector/futuristic-digital-money-concept-with-indian-rupee-sign_1017-45127.jpg?ga=GA1.1.1161449929.1704814302&semt=ais_hybrid" className="" style={{ width: "60px" }} />
                         </div>
-                        <p className="m-5">Welcome Back to Expense Tracker</p>
+                        <p className="m-5 fs-3">Welcome Back to Expense Tracker</p>
                         <div className="d-flex justify-content-center forms ">
                             <form onSubmit={login} style={{ position: "relative" }}>
                                 <div style={{ position: "relative" }}>
@@ -79,7 +79,7 @@ const Auth = () => {
                                 </button>
                             </form>
                         </div>
-                        <label className='mb-5 d-flex' style={{ justifyContent: "center" }} >New User ?  &nbsp;
+                        <label className='mb-5 d-flex fs-4' style={{ justifyContent: "center" }} >New User ?  &nbsp;
                             <Link to='/register'>Sign up</Link>
                         </label>
                     </div>
